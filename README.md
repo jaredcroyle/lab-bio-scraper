@@ -1,3 +1,5 @@
+hey, this is our webscraper for collecting bio-data for cleaning and annotation. the future is here - get ready for huggingface's and github's baby they left at a biotech lab ( ˘ ³˘)
+
 # Lab Bio Scraper
 
 A comprehensive biological data scraper and normalizer for major bioinformatics repositories, designed as a "Hugging Face for biological data."
