@@ -1,0 +1,36 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="lab-bio-scraper",
+    version="0.1.0",
+    description="A comprehensive biological data scraper and normalizer for major bioinformatics repositories",
+    author="Lab Bio Scraper Team",
+    packages=find_packages(),
+    install_requires=[
+        "requests>=2.31.0",
+        "beautifulsoup4>=4.12.0",
+        "pandas>=2.0.0",
+        "numpy>=1.24.0",
+        "tqdm>=4.65.0",
+        "pydantic>=2.0.0",
+        "httpx>=0.24.0",
+        "aiohttp>=3.8.0",
+        "biopython>=1.81",
+        "lxml>=4.9.0",
+        "python-dotenv>=1.0.0",
+        "typer>=0.9.0",
+        "rich>=13.0.0",
+    ],
+    python_requires=">=3.8",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Topic :: Scientific/Engineering :: Bio-Informatics",
+    ],
+)

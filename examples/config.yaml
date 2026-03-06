@@ -1,0 +1,109 @@
+# Lab Bio Scraper Configuration File
+
+# General settings
+general:
+  debug: false
+  log_level: "INFO"
+  max_retries: 3
+  timeout: 30
+
+# Rate limiting for API calls
+rate_limiting:
+  default_delay: 1.0  # seconds between requests
+  ncbbi_delay: 0.5
+  uniprot_delay: 1.0
+  pdb_delay: 0.3
+  alphafold_delay: 2.0
+
+# Quality scoring configuration
+quality:
+  weights:
+    completeness: 0.4
+    consistency: 0.3
+    accuracy: 0.3
+  
+  required_fields:
+    genomic_sequence: ["accession", "title", "source", "organisms", "technology"]
+    transcriptomic: ["accession", "title", "source", "organisms", "samples"]
+    proteomic: ["accession", "title", "source", "organisms"]
+    structural: ["accession", "title", "source", "organisms"]
+    single_cell: ["accession", "title", "source", "organisms", "samples"]
+    metabolomic: ["accession", "title", "source", "organisms"]
+    biodiversity: ["accession", "title", "source", "organisms"]
+
+# ML formatting configuration
+ml_formatting:
+  feature_types: ["categorical", "numerical", "text"]
+  include_text_features: true
+  max_text_length: 1000
+  export_format: "pandas"  # pandas, numpy, torch, tensorflow
+
+# Provenance tracking
+provenance:
+  enable_lineage: true
+  enable_version: true
+  track_transformations: true
+  export_format: "json"  # json, turtle
+
+# Source-specific configurations
+sources:
+  ncbi:
+    base_url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+    api_key: null  # Set your NCBI API key here
+    tool: "lab-bio-scraper"
+    email: "admin@example.com"
+    max_records: 1000
+    
+  geo:
+    base_url: "https://www.ncbi.nlm.nih.gov/geo/query/"
+    max_records: 1000
+    
+  ena:
+    base_url: "https://www.ebi.ac.uk/ena/browser/api/"
+    max_records: 1000
+    
+  uniprot:
+    base_url: "https://rest.uniprot.org/"
+    max_records: 1000
+    
+  pdb:
+    base_url: "https://data.rcsb.org/rest/v1/core/"
+    max_records: 1000
+    
+  alphafold:
+    base_url: "https://alphafold.ebi.ac.uk/api/prediction/"
+    max_records: 1000
+
+# Output configuration
+output:
+  default_format: "json"
+  include_raw_metadata: true
+  pretty_print: true
+  compression: null  # gzip, bz2, etc.
+  
+  # Directory structure
+  directory_structure:
+    by_source: true
+    by_data_type: true
+    by_date: false
+
+# Data validation
+validation:
+  strict_accession_validation: true
+  validate_checksums: false  # Set to true to validate file checksums
+  validate_file_sizes: true
+  
+# Caching
+cache:
+  enabled: true
+  ttl: 3600  # seconds
+  backend: "memory"  # memory, file, redis
+  file_cache_dir: ".cache"
+  
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: null  # Set to a file path to log to file
+  max_size: "10MB"
+  backup_count: 5
